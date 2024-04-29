@@ -1,3 +1,3 @@
 # InkCase
 
-A front end only website
+A front end only website for selling and purchasing used books and literature
