@@ -14,7 +14,23 @@
             {
                 background-image: url(lib.jpg);
                 width: 100%;
-                height: 700px;
+                height: 800px;
+            }
+            body
+            {
+                position: relative;
+            }
+            body::before
+            {
+                content: "";
+                background-image: url(headerimg.png);
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0.5;
+                z-index: -1;
             }
         </style>
     </head>
@@ -36,7 +52,7 @@
 
         <body>
             <div id="about" class="my-4 rounded row d-flex justify-content-center">
-                <div class="card border-danger bg-dark text-light col-6 p-3">
+                <div class="card border-danger bg-dark text-light col-6 p-3" style="--bs-bg-opacity: 0.8">
                     <div class="card-header border-danger">
                         <h1>About Us</h1>
                     </div>
@@ -50,8 +66,8 @@
                         For sellers, InkCase offers a hassle-free way to give your books a new lease on life. Clear out your bookshelves and earn money by selling your gently used books to fellow readers who will appreciate them. It's a win-win situation - you make space for new books while helping someone else find their next literary obsession.
                     </div>
                 </div>
-                <div class="card border-info text-bg-dark col-4 ms-4 p-3">
-                    <img class="card-img-bottom" src="team.webp" style="opacity: 0.5;" alt="Image Preview">
+                <div class="card border-info text-bg-dark col-4 ms-4 p-3" style="--bs-bg-opacity: 0.8">
+                    <img class="card-img-bottom" src="team.webp" style="opacity: 0.5;">
                     <div class="card-img-overlay">
                         <div class="card-header border-info"><h2>Core Team</h2></div>
                         <div class="card-body">
@@ -73,8 +89,33 @@
                     </div>
                 </div>
             </div>
-            <div id="contact">
-
+            <div id="contact" class="my-4 rounded row d-flex justify-content-center">
+                <div class="card border-success text-bg-dark col-6 text-center" style="--bs-bg-opacity: 0.8">
+                    <div class="card-header border-success"><h1>Contact Us</h1></div>
+                    <div class="card-body">
+                        <form class="form text-dark">
+                            <div class="input-group mb-3">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                                    <label for="name" class="form-label">First Name</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                                    <label for="name" class="form-label">Last Name</label>
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="mail" placeholder="Enter your Mail" required>
+                                <label for="mail" class="form-label">Email</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" placeholder="Leave a comment here" id="msg" style="height: 100px;"></textarea>
+                                <label for="msg" class="form-label">Comments</label>
+                            </div>
+                            <button type="button" class="btn btn-outline-success">Send</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </body>
         
