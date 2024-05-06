@@ -5,6 +5,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <style>
             *
             {
@@ -41,19 +42,33 @@
                 <button class="btn btn-lg btn-outline-dark col-3 m-1">Sell</button>
             </div>
         </header>
-
-        <nav class="bg-dark p-2 sticky-top">
-            <ul class="nav nav-pills nav-fill">
+        <nav class="bg-dark p-2 sticky-top row align-items-center">
+            <li class="nav-item col-2"><i class="bi bi-list text-light" data-bs-toggle="offcanvas" data-bs-target="#oc" style="font-size: larger;"></i></li>
+            <ul class="nav nav-pills nav-fill col-8">
                 <li class="nav-item"><a class="nav-link text-light" href="#home">Home</a></li>
                 <li class="nav-item"><a class="nav-link text-light" href="#about">About</a></li>
                 <li class="nav-item"><a class="nav-link text-light" href="#contact">Contact</a></li>
             </ul>
         </nav>
 
+        <div class="offcanvas offcanvas-start text-bg-dark" id="oc" style="--bs-bg-opacity: 0.9">
+            <div class="offcanvas-header">
+                <h2 class="offcanvas-title">InkCase</h2>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <a type="button" class="btn btn-dark text-light col-11 p-3 m-3">Login/Signup</a>
+                <a type="button" class="btn btn-dark text-light col-11 p-3 m-3">Sell</a>
+                <a type="button" class="btn btn-dark text-light col-11 p-3 m-3">Buy</a>
+                <a type="button" class="btn btn-dark text-light col-11 p-3 m-3" href="#about">About</a>
+                <a type="button" class="btn btn-dark text-light col-11 p-3 m-3" href="#contact">Contact</a>
+            </div>
+        </div>
+
         <body>
             <div id="about" class="container my-4 rounded d-flex justify-content-center">
-                <div class="card border-danger bg-dark text-light p-3" style="--bs-bg-opacity: 0.8">
-                    <div class="card-header border-danger">
+                <div class="card border-dark bg-dark text-light p-3 col-10" style="--bs-bg-opacity: 0.8">
+                    <div class="card-header border-warning">
                         <h1>About Us</h1>
                     </div>
                     <div class="card-body">
@@ -67,29 +82,29 @@
                     </div>
                 </div>
             </div>
-            <div id="team" class="my-4 rounded d-flex justify-content-center">
-                <div class="card row border-dark bg-dark text-light p-3" style="--bs-bg-opacity: 0.8">
-                    <div class="card-header m-2">
+            <div id="team" class="container my-4 rounded d-flex justify-content-center">
+                <div class="card row border-dark bg-dark text-light p-3 col-10 " style="--bs-bg-opacity: 0.8">
+                    <div class="card-header m-2 border-warning d-flex justify-content-center">
                         <h3>Core Team</h3>
                     </div>
-                    <div class="card-body row">
-                        <div class="card border-warning text-bg-dark col-3 ms-4 p-3 align-items-center">
-                            <div class="card-img-top"><img src="ty.jpeg" width="150px"></div>
-                            <div class="card-header border-warning">Thanoj Y</div>
+                    <div class="card-body row justify-content-center">
+                        <div class="card border-success text-bg-dark col-2 ms-4 p-3 align-items-center">
+                            <div class="card-img-top"><img src="ty.jpeg" width="135px"></div>
+                            <div class="card-header border-success">Thanoj Y</div>
                             <div class="card-footer"><button type="button" class="btn btn-primary">Linkedin</button></div>
                         </div>
-                        <div class="card border-info text-bg-dark col-3 ms-4 p-3 align-items-center">
-                            <div class="card-img-top"><img src="team.webp" width="150px"></div>
+                        <div class="card border-info text-bg-dark col-2 ms-4 p-3 align-items-center">
+                            <div class="card-img-top"><img src="team.webp" width="135px"></div>
                             <div class="card-header border-info">Saahil Menon</div>
                             <div class="card-footer"><button type="button" class="btn btn-primary">Linkedin</button></div>
                         </div>
                         <div class="card border-info text-bg-dark col-2 ms-4 p-3 align-items-center">
-                            <div class="card-img-top"><img src="team.webp" width="100px"></div>
+                            <div class="card-img-top"><img src="team.webp" width="135px"></div>
                             <div class="card-header border-info">Kishan Tikare</div>
                             <div class="card-footer"><button type="button" class="btn btn-primary">Linkedin</button></div>
                         </div>
                         <div class="card border-info text-bg-dark col-2 ms-4 p-3 align-items-center">
-                            <div class="card-img-top"><img src="team.webp" width="100px"></div>
+                            <div class="card-img-top"><img src="team.webp" width="135px"></div>
                             <div class="card-header border-info">Arush U Rai</div>
                             <div class="card-footer"><button type="button" class="btn btn-primary">Linkedin</button></div>
                         </div>
@@ -97,8 +112,8 @@
                 </div>
             </div>
             <div id="contact" class="my-4 rounded row d-flex justify-content-center">
-                <div class="card border-success text-bg-dark col-6 text-center" style="--bs-bg-opacity: 0.8">
-                    <div class="card-header border-success"><h1>Contact Us</h1></div>
+                <div class="card text-bg-dark col-6 text-center" style="--bs-bg-opacity: 0.8">
+                    <div class="card-header border-warning"><h1>Contact Us</h1></div>
                     <div class="card-body">
                         <form class="form text-dark">
                             <div class="input-group mb-3">
