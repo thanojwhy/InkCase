@@ -1,281 +1,337 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>InkCase</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <style>
-            html,body
-            {
-                box-sizing: border-box;
-            }
-            header
-            {
-                background-image: url(lib.jpg);
-                width: 100%;
-                height: 800px;
-            }
-            body
-            {
-                position: relative;
-            }
-            body::before
-            {
-                content: "";
-                background-image: url(headerimg.png);
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                opacity: 0.5;
-                z-index: -1;
-            }
-
-            header {
-                background-image: url(lib.jpg);
-                width: 100%;
-                height: 800px;
-            }
-
-            .custom-button,
-            .custom-button *,
-            .custom-button :after,
-            .custom-button :before,
-            .custom-button:after,
-            .custom-button:before {
-            border: 0 solid;
+<html lang="en" ng-app="InkCaseApp">
+<head>
+    <title>InkCase</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        html, body {
             box-sizing: border-box;
-            }
-            .custom-button {
-            -webkit-tap-highlight-color: transparent;
-            -webkit-appearance: button;
-            background-color: #000000 ;
-            background-image: none;
-            opacity: 0.81;
-            color: #f8f5ed;
-            cursor: pointer;
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-            Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-            Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-            font-size: 100%;
-            font-weight: 900;
-            line-height: 1.5;
-            margin: 0;
-            -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
-            padding: 0;
-            
-            }
-            .custom-button:disabled {
-            cursor: default;
-            }
-            .custom-button:-moz-focusring {
-            outline: auto;
-            }
-            .custom-button svg {
-             display: block;
-            vertical-align: middle;
-            }
-            .custom-button [hidden] {
-             display: none;
-            }
-            .custom-button {
-             border: 1px ;
-             border-radius: 2px;
-             box-sizing: border-box;
-             display: block;
-             overflow: hidden;
-            padding: 1.2rem 3rem;
+            overflow-x: hidden;
+        }
+        header {
+            background-image: url(lib.jpg);
+            width: 100%;
+            height: 800px;
+        }
+        body {
             position: relative;
-            text-transform: uppercase;
-            }   
-            .custom-button span {
-            font-weight: 900;
-            mix-blend-mode:lighten;
-    
-            }
-            .custom-button:hover span{
-                color: #f6a739;
-                z-index: 1;
-            }
-            .custom-button:hover{
-                transition:0.4s ;
-                scale: 0.9;
-            }
-            .custom-button:after,
-            .custom-button:before {
-                background: black;
+        }
+        body::before {
             content: "";
-            height: 100%;
-            left: -100%;
+            background-image: url(headerimg.png);
             position: absolute;
             top: 0;
-            transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+            left: 0;
             width: 100%;
-            will-change: transform;
-            }
-            .custom-button:after {
-            background: #f3a942d0;
-            transition-delay: 0.1s;
+            height: 100%;
+            opacity: 0.5;
             z-index: -1;
-            }
-            .custom-button:hover:after,
-            .custom-button:hover:before {
-             transform: translateX(100%);
-             color: #f3a942d0;
-             
-            }
-            
-            .form-control:focus
-            {
-                box-shadow: 2px 4px #ffc107;
-            }
-            .form-check-input:checked
-            {
-                background-color: #ffc107;
-            }
-        </style>
-    </head>
-    <body class="bg-black">
-        <nav class="bg-dark p-2 fixed-top row align-items-center">
-            <li class="nav-item col-2"><i class="bi bi-list text-light" data-bs-toggle="offcanvas" data-bs-target="#oc" style="font-size: larger;"></i></li>
-            <ul class="nav nav-pills nav-fill col-8">
-                <li class="nav-item"><a class="nav-link text-light" href="#home">Home</a></li>
-                <li class="nav-item"><a class="nav-link text-light" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link text-light" href="#contact">Contact</a></li>
-            </ul>
-            <li class="nav-item col-2 d-flex justify-content-end px-5"><i type="button" class="bi bi-person-circle text-light float-right" data-bs-toggle="modal" data-bs-target="#signin" style="font-size: larger;"></i></li>
-        </nav>
+        }
 
-        <div class="modal modal-md fade bg-dark" style="--bs-bg-opacity: 0.5" id="signin">"
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content modal-content-md text-bg-dark" style="--bs-bg-opacity: 0.9">
-                    <div class="modal-header text-warning border-warning">
-                        <h3 class="modal-title">InkCase</h3>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body border-warning">
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control border-warning" id="mail" placeholder="Enter your Mail" required>
-                            <label for="mail" class="form-label text-dark">Email</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="password" class="form-control border-warning" id="pwd" placeholder="Enter your password" required>
-                            <label for="mail" class="form-label text-dark">Password</label>
-                        </div>
-                        <div class="form-check form-switch mb-3">
-                            <input class="form-check-input focus-ring" type="checkbox" id="switch" name="remember" value="yes" checked style="--bs-focus-ring-color: rgba(var(--bs-warning-rgb), .25)">
-                            <label class="form-check-label">Remember me</label>
-                        </div>
-                    </div>
-                    <div class="modal-footer border-dark d-flex justify-content-center">
-                        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Login</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        header {
+            background-image: url(lib.jpg);
+            width: 100%;
+            height: 800px;
+        }
 
-        <div class="offcanvas offcanvas-start text-bg-dark" id="oc" style="--bs-bg-opacity: 0.9">
-            <div class="offcanvas-header">
-                <h2 class="offcanvas-title">InkCase</h2>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-            </div>
-            <div class="offcanvas-body">
-                <a type="button" class="btn btn-dark text-light col-11 p-3 m-3" data-bs-toggle="modal" data-bs-target="#signin">Login/Signup</a>
-                <a type="button" class="btn btn-dark text-light col-11 p-3 m-3">Sell</a>
-                <a type="button" class="btn btn-dark text-light col-11 p-3 m-3">Buy</a>
-                <a type="button" class="btn btn-dark text-light col-11 p-3 m-3" href="#about">About</a>
-                <a type="button" class="btn btn-dark text-light col-11 p-3 m-3" href="#contact">Contact</a>
-            </div>
-        </div>
-
-        <header id="home" class="d-flex align-items-center">
-            <div class="container d-flex justify-content-center">
-                <button class="btn btn-lg custom-button col-3 m-2"><span>Buy</span></button>
-                <button class="btn btn-lg custom-button col-3 m-2"><span>Sell</span></button>
-            </div>
-        </header>
-
-        <body>
-            <div id="about" class="container my-4 rounded d-flex justify-content-center">
-                <div class="card border-dark bg-dark text-light p-3 col-10" style="--bs-bg-opacity: 0.8">
-                    <div class="card-header border-warning">
-                        <h1>About Us</h1>
-                    </div>
-                    <div class="card-body">
-                        At InkCase, we're passionate about books and the stories they hold. Our mission is to provide a platform where these stories can continue to be cherished and enjoyed by new readers.
-                    </div>
-                    <div class="card-body">
-                        For book lovers, our virtual shelves are filled with an eclectic array of pre-loved books waiting to be discovered. Whether you're searching for a beloved classic, a thrilling mystery, or a thought-provoking non-fiction title, we have something for everyone. Lose yourself in the pages of a well-worn novel or uncover hidden gems you never knew existed.
-                    </div>
-                    <div class="card-body">
-                        For sellers, InkCase offers a hassle-free way to give your books a new lease on life. Clear out your bookshelves and earn money by selling your gently used books to fellow readers who will appreciate them. It's a win-win situation - you make space for new books while helping someone else find their next literary obsession.
-                    </div>
-                </div>
-            </div>
-            <div id="team" class="container my-4 rounded d-flex justify-content-center">
-                <div class="card row border-dark bg-dark text-light p-3 col-10 " style="--bs-bg-opacity: 0.8">
-                    <div class="card-header m-2 border-warning d-flex justify-content-center">
-                        <h3>Core Team</h3>
-                    </div>
-                    <div class="card-body row justify-content-center">
-                        <div class="card border-success text-bg-dark col-2 ms-4 p-3 align-items-center">
-                            <div class="card-img-top"><img src="ty.jpeg" width="135px"></div>
-                            <div class="card-header border-success">Thanoj Y</div>
-                            <div class="card-footer"><button type="button" class="btn btn-primary">Linkedin</button></div>
-                        </div>
-                        <div class="card border-info text-bg-dark col-2 ms-4 p-3 align-items-center">
-                            <div class="card-img-top"><img src="team.webp" width="135px"></div>
-                            <div class="card-header border-info">Saahil Menon</div>
-                            <div class="card-footer"><button type="button" class="btn btn-primary">Linkedin</button></div>
-                        </div>
-                        <div class="card border-info text-bg-dark col-2 ms-4 p-3 align-items-center">
-                            <div class="card-img-top"><img src="team.webp" width="135px"></div>
-                            <div class="card-header border-info">Kishan Tikare</div>
-                            <div class="card-footer"><button type="button" class="btn btn-primary">Linkedin</button></div>
-                        </div>
-                        <div class="card border-info text-bg-dark col-2 ms-4 p-3 align-items-center">
-                            <div class="card-img-top"><img src="team.webp" width="135px"></div>
-                            <div class="card-header border-info">Arush U Rai</div>
-                            <div class="card-footer"><button type="button" class="btn btn-primary">Linkedin</button></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="contact" class="my-4 rounded row d-flex justify-content-center">
-                <div class="card text-bg-dark col-6 text-center" style="--bs-bg-opacity: 0.8">
-                    <div class="card-header border-warning"><h1>Contact Us</h1></div>
-                    <div class="card-body">
-                        <form class="form text-dark">
-                            <div class="input-group mb-3">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
-                                    <label for="name" class="form-label">First Name</label>
-                                </div>
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
-                                    <label for="name" class="form-label">Last Name</label>
-                                </div>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="mail" placeholder="Enter your Mail" required>
-                                <label for="mail" class="form-label">Email</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="msg" style="height: 100px;"></textarea>
-                                <label for="msg" class="form-label">Comments</label>
-                            </div>
-                            <button type="button" class="btn btn-outline-success">Send</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </body>
+        .custom-button,
+        .custom-button *,
+        .custom-button :after,
+        .custom-button :before,
+        .custom-button:after,
+        .custom-button:before {
+        border: 0 solid;
+        box-sizing: border-box;
+        }
+        .custom-button {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-appearance: button;
+        background-color: #212529 ;
+        background-image: none;
+        opacity: 0.81;
+        color: #f8f5ed;
+        cursor: pointer;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+        Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+        font-size: 100%;
+        font-weight: 900;
+        line-height: 1.5;
+        margin: 0;
+        -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+        padding: 0;
         
-        <footer>
+        }
+        .custom-button:disabled {
+        cursor: default;
+        }
+        .custom-button:-moz-focusring {
+        outline: auto;
+        }
+        .custom-button svg {
+         display: block;
+        vertical-align: middle;
+        }
+        .custom-button [hidden] {
+         display: none;
+        }
+        .custom-button {
+         border: 1px ;
+         border-radius: 2px;
+         box-sizing: border-box;
+         display: block;
+         overflow: hidden;
+        padding: 1.2rem 3rem;
+        position: relative;
+        text-transform: uppercase;
+        }   
+        .custom-button span {
+        font-weight: 900;
+        mix-blend-mode:lighten;
 
-        </footer>
-    </body>
+        }
+        .custom-button:hover span{
+            color: #f6a739;
+            z-index: 1;
+        }
+        .custom-button:hover{
+            transition:0.4s ;
+            scale: 0.9;
+        }
+        .custom-button:after,
+        .custom-button:before {
+        background-color: #101113 ;
+        content: "";
+        height: 100%;
+        left: -100%;
+        position: absolute;
+        top: 0;
+        transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+        width: 100%;
+        will-change: transform;
+        }
+        .custom-button:after {
+        background: #f3a942d0;
+        transition-delay: 0.1s;
+        z-index: -1;
+        }
+        .custom-button:hover:after,
+        .custom-button:hover:before {
+         transform: translateX(100%);
+         color: #f3a942d0;
+         
+        }
+        
+        .form-control:focus {
+            box-shadow: 2px 4px #ffc107;
+        }
+        .form-check-input:checked {
+            background-color: #ffc107;
+        }
+    </style>
+</head>
+<body class="bg-black" data-bs-spy="scroll" data-bs-target=".navbar" ng-controller="BookController">
+    <nav class="navbar navbar-expand-lg bg-dark p-2 fixed-top row align-items-center">
+        <div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#c">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="#c">
+                <li class="nav-item col-2"><i class="bi bi-list text-light" data-bs-toggle="offcanvas" data-bs-target="#oc" style="font-size: larger;"></i></li>
+                <ul class="navbar-nav nav-fill col-8">
+                    <li class="nav-item"><a class="nav-link active text-light" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" href="#contact">Contact</a></li>
+                </ul>
+                <li class="nav-item col-2 d-flex justify-content-end px-5"><i type="button" class="bi bi-person-circle text-light float-right" data-bs-toggle="modal" data-bs-target="#signin" style="font-size: larger;"></i></li>
+            </div>
+        </div>
+    </nav>
+
+    <div class="modal modal-md fade bg-dark" style="--bs-bg-opacity: 0.5" id="signin">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content modal-content-md text-bg-dark" style="--bs-bg-opacity: 0.9">
+                <div class="modal-header text-warning border-warning">
+                    <h3 class="modal-title">InkCase</h3>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body border-warning">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control border-warning" id="mail" placeholder="Enter your Mail" required>
+                        <label for="mail" class="form-label text-dark">Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control border-warning" id="pwd" placeholder="Enter your password" required>
+                        <label for="pwd" class="form-label text-dark">Password</label>
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input focus-ring" type="checkbox" id="switch" name="remember" value="yes" checked style="--bs-focus-ring-color: rgba(var(--bs-warning-rgb), .25)">
+                        <label class="form-check-label">Remember me</label>
+                    </div>
+                </div>
+                <div class="modal-footer border-dark d-flex justify-content-center">
+                    <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="offcanvas offcanvas-start text-bg-dark" id="oc" style="--bs-bg-opacity: 0.9">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title">InkCase</h2>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <a type="button" class="btn btn-dark text-light col-11 p-3 m-3" data-bs-toggle="modal" data-bs-target="#signin">Login/Signup</a>
+            <a type="button" class="btn btn-dark text-light col-11 p-3 m-3" href="#home" ng-click="showBooks('sell')">Sell</a>
+            <a type="button" class="btn btn-dark text-light col-11 p-3 m-3" href="#home" ng-click="showBooks('buy')">Buy</a>
+            <a type="button" class="btn btn-dark text-light col-11 p-3 m-3" href="#about">About</a>
+            <a type="button" class="btn btn-dark text-light col-11 p-3 m-3" href="#contact">Contact</a>
+        </div>
+    </div>
+
+    <header id="home" class="d-flex align-items-center">
+        <div class="col-3 ps-4 m-3">
+            <button class="btn btn-lg custom-button col-10 m-2" ng-click="showBooks('buy')"><span>Buy</span></button>
+            <button class="btn btn-lg custom-button col-10 m-2" ng-click="showBooks('sell')"><span>Sell</span></button>
+        </div>
+        <div ng-if="!showBooksSection">
+            <div class="card border-dark bg-dark text-warning p-3 col-8 m-3" style="--bs-bg-opacity: 0.9">
+                <div class="card-header border-warning">
+                    <h1 style="text-transform: uppercase;">Buy or Sell your first book</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-8" ng-if="showBooksSection" style="overflow-y: scroll; overflow-x: hidden;">
+            <div class="card border-dark bg-dark text-warning p-3 col-12 m-3" style="--bs-bg-opacity: 0.9">
+                <div class="card-header border-warning">
+                    <h2>{{sectionTitle}}</h2>
+                </div>
+                <div class="row">
+                    <div class="col-3" ng-repeat="book in books">
+                        <div class="card text-bg-dark m-3">
+                            <div class="card-body">
+                                <h5 class="card-title">{{book.title}}</h5>
+                                <p class="card-text">{{book.author}}</p>
+                                <p class="card-text">{{book.description}}</p>
+                                <p class="card-text">{{book.price}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="about" class="container my-4 rounded d-flex justify-content-center">
+        <div class="card border-dark bg-dark text-light p-3 col-10" style="--bs-bg-opacity: 0.8">
+            <div class="card-header border-warning">
+                <h1>About Us</h1>
+            </div>
+            <div class="card-body">
+                At InkCase, we're passionate about books and the stories they hold. Our mission is to provide a platform where these stories can continue to be cherished and enjoyed by new readers.
+            </div>
+            <div class="card-body">
+                For book lovers, our virtual shelves are filled with an eclectic array of pre-loved books waiting to be discovered. Whether you're searching for a beloved classic, a thrilling mystery, or a thought-provoking non-fiction title, we have something for everyone. Lose yourself in the pages of a well-worn novel or uncover hidden gems you never knew existed.
+            </div>
+            <div class="card-body">
+                For sellers, InkCase offers a hassle-free way to give your books a new lease on life. Clear out your bookshelves and earn money by selling your gently used books to fellow readers who will appreciate them. It's a win-win situation - you make space for new books while helping someone else find their next literary obsession.
+            </div>
+        </div>
+    </div>
+    <div id="team" class="container my-4 rounded d-flex justify-content-center">
+        <div class="card row border-dark bg-dark text-light p-3 col-10 " style="--bs-bg-opacity: 0.8">
+            <div class="card-header m-2 border-warning d-flex justify-content-center">
+                <h3>Core Team</h3>
+            </div>
+            <div class="card-body row justify-content-center">
+                <div class="card border-success text-bg-dark col-2 ms-4 p-3 align-items-center">
+                    <div class="card-img-top"><img src="ty.jpeg" width="135px"></div>
+                    <div class="card-header border-success">Thanoj Y</div>
+                    <div class="card-footer"><button type="button" class="btn btn-primary">Linkedin</button></div>
+                </div>
+                <div class="card border-info text-bg-dark col-2 ms-4 p-3 align-items-center">
+                    <div class="card-img-top"><img src="team.webp" width="135px"></div>
+                    <div class="card-header border-info">Saahil Menon</div>
+                    <div class="card-footer"><button type="button" class="btn btn-primary">Linkedin</button></div>
+                </div>
+                <div class="card border-info text-bg-dark col-2 ms-4 p-3 align-items-center">
+                    <div class="card-img-top"><img src="team.webp" width="135px"></div>
+                    <div class="card-header border-info">Kishan Tikare</div>
+                    <div class="card-footer"><button type="button" class="btn btn-primary">Linkedin</button></div>
+                </div>
+                <div class="card border-info text-bg-dark col-2 ms-4 p-3 align-items-center">
+                    <div class="card-img-top"><img src="team.webp" width="135px"></div>
+                    <div class="card-header border-info">Arush U Rai</div>
+                    <div class="card-footer"><button type="button" class="btn btn-primary">Linkedin</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contact" class="my-4 rounded row d-flex justify-content-center">
+        <div class="card text-bg-dark col-6 text-center" style="--bs-bg-opacity: 0.8">
+            <div class="card-header border-warning"><h1>Contact Us</h1></div>
+            <div class="card-body">
+                <form class="form text-dark">
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                            <label for="name" class="form-label">First Name</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                            <label for="name" class="form-label">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="mail" placeholder="Enter your Mail" required>
+                        <label for="mail" class="form-label">Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="msg" style="height: 100px;"></textarea>
+                        <label for="msg" class="form-label">Comments</label>
+                    </div>
+                    <button type="button" class="btn btn-outline-warning">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+
+    </footer>
+
+    <script>
+        angular.module('InkCaseApp', [])
+        .controller('BookController', ['$scope', function($scope) {
+            $scope.books = [];
+            $scope.sectionTitle = '';
+            $scope.showBooksSection = false;
+
+            $scope.showBooks = function(section) {
+                if (section === 'buy') {
+                    $scope.sectionTitle = 'Books for Sale';
+                    $scope.books = [
+                        {title: 'Book 1', author: 'Author 1', description: 'Description 1', price: '$10'},
+                        {title: 'Book 2', author: 'Author 2', description: 'Description 2', price: '$15'},
+                        {title: 'Book 3', author: 'Author 3', description: 'Description 3', price: '$10'},
+                        {title: 'Book 4', author: 'Author 4', description: 'Description 4', price: '$15'},
+                        {title: 'Book 5', author: 'Author 5', description: 'Description 5', price: '$10'},
+                        {title: 'Book 6', author: 'Author 6', description: 'Description 6', price: '$15'},
+                    ];
+                } else if (section === 'sell') {
+                    $scope.sectionTitle = 'Books to Buy';
+                    $scope.books = [
+                        {title: 'Book A', author: 'Author A', description: 'Description A', price: '$20'},
+                        {title: 'Book B', author: 'Author B', description: 'Description B', price: '$25'}
+                    ];
+                }
+                $scope.showBooksSection = true;
+            };
+        }]);
+    </script>
+</body>
 </html>
